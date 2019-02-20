@@ -1,0 +1,38 @@
+function convertToRoman(num) {
+  var decimal = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1];
+  var roman = ['M', 'CM', 'D', 'CD', 'C', 'XC', 'L', 'XL', 'X', 'IX', 'V', 'IV', 'I'];
+
+  var output = "";
+/*
+1 st count
+      num = num - decimal[key]; => 10[index = 8]
+      => num 36 - 10 = 26; 36 < 10 (numbers are placed backwards, 36 and 10 are treated as a negative numbers)
+      output = output + roman[key]; => X
+2 nd count
+      num = num - decimal[key]; => 10[index = 8]
+      => num 26 - 10 = 16;
+      output = output + roman[key];  => X 
+3 rd count     
+      num = num - decimal[key]; => 10[index = 8]      
+      => num 36 - 10 = 6;
+      output = output + roman[key];  => X
+4 th count     
+      num = num - decimal[key]; => 6 [index = 9]      
+      => num 36 - 10 = 6;
+      output = output + roman[key];  => V
+5 th count     
+      num = num - decimal[key]; => -4 [index = 11] (there is no -4, it's treated as)  
+      => num 36 - 10 = -4;
+      output = output + roman[key];  => I
+decimal[key] = 8 */
+
+  for (var key in decimal) {    
+    while (decimal[key] <= num) {
+      num = num - decimal[key];
+      output = output + roman[key];
+    }
+  }
+  return output;
+}
+
+convertToRoman(36);
